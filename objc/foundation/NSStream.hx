@@ -10,8 +10,8 @@ extern class NSStream {
 	public function outputStreamToMemory():Dynamic;
 	public function outputStreamWithURL( url:NSURL,  shouldAppend:Bool):Dynamic;
 	public function inputStreamWithFileAtPath( path:String):Dynamic;
-	public function getStreamsToHost( host:NSHost,  port:Int,  inputStream:NSInputStream*,  outputStream:NSOutputStream*):Void;
-	public function outputStreamToBuffer( buffer:uint8_t,  capacity:Int):Dynamic;
+//!!!!	public function getStreamsToHost( host:NSHost,  port:Int,  inputStream:NSInputStream,  outputStream:NSOutputStream):Void;
+//!!!!	public function outputStreamToBuffer( buffer:uint8_t,  capacity:Int):Dynamic;
 	public function outputStreamToFileAtPath( path:String,  shouldAppend:Bool):Dynamic;
 	public function inputStreamWithURL( url:NSURL):Dynamic;
 	public function inputStreamWithData( data:NSData):Dynamic;
@@ -32,13 +32,13 @@ extern class NSStream {
 	public function hasSpaceAvailable():Bool;
 	public function open():Void;
 	public function initWithData( data:NSData):Dynamic;
-	public function delegate():id<NSStreamDelegate>;
-	public function setDelegate( delegate:id<NSStreamDelegate>):Void;
-	public function removeFromRunLoop( aRunLoop:NSRunLoop,  mode:String):Void;
-	public function write( buffer:constuint8_t,  len:Int):Int;
-	public function initToBuffer( buffer:uint8_t,  capacity:Int):Dynamic;
-	public function read( buffer:uint8_t,  len:Int):Int;
-	public function getBuffer( buffer:uint8_t*,  len:Int):Bool;
+//!!!!	public function delegate():NSStreamDelegate;
+//!!!!	public function setDelegate( delegate:NSStreamDelegate):Void;
+//!!!!	public function removeFromRunLoop( aRunLoop:NSRunLoop,  mode:String):Void;
+//!!!!	public function write( buffer:constuint8_t,  len:Int):Int;
+//!!!!	public function initToBuffer( buffer:uint8_t,  capacity:Int):Dynamic;
+//!!!!	public function read( buffer:uint8_t,  len:Int):Int;
+//!!!!	public function getBuffer( buffer:uint8_t*,  len:Int):Bool;
 	public function initToMemory():Dynamic;
 	public function initWithURL( url:NSURL):Dynamic;
 	//@:overload !!NEED CUSTOM META DATA !!
@@ -66,7 +66,7 @@ extern enum NSStreamEvent
 	NSStreamEventErrorOccurred;
 	NSStreamEventEndEncountered;
 }
-
+#if display
 /*	NSStream.h
         Copyright (c) 2003-2012, Apple Inc. All rights reserved
 */
@@ -115,20 +115,20 @@ public function removeFromRunLoop:(NSRunLoop *)aRunLoop forMode:(NSString *)mode
 - (NSStreamStatus)streamStatus;
 - (NSError *)streamError;
 }
-
+#end
 // NSInputStream is an abstract class representing the base functionality of a read stream.
 // Subclassers are required to implement these methods.
-extern class NSInputStream extends NSStream
-- (Int)read:(uint8_t *)buffer maxLength:(NSUInteger)len;
+extern class NSInputStream extends NSStream {
+//!!!!- (Int)read:(uint8_t *)buffer maxLength:(NSUInteger)len;
     // reads up to length bytes into the supplied buffer, which must be at least of size len. Returns the actual number of bytes read.
 
-- (Bool)getBuffer:(uint8_t **)buffer length:(NSUInteger *)len;
+//!!!!- (Bool)getBuffer:(uint8_t **)buffer length:(NSUInteger *)len;
     // returns in O(1) a pointer to the buffer in 'buffer' and by reference in 'len' how many bytes are available. This buffer is only valid until the next stream operation. Subclassers may return NO for this if it is not appropriate for the stream type. This may return NO if the buffer is not available.
 
-- (Bool)hasBytesAvailable;
+//!!!!- (Bool)hasBytesAvailable;
     // returns YES if the stream has bytes available or if it impossible to tell without actually doing the read.
 }
-
+#if display
 // NSOutputStream is an abstract class representing the base functionality of a write stream.
 // Subclassers are required to implement these methods.
 extern class NSOutputStream extends NSStream
@@ -139,11 +139,11 @@ extern class NSOutputStream extends NSStream
     // returns YES if the stream can be written to or if it is impossible to tell without actually doing the write.
 }
 
-#if (TARGET_OS_MAC && !(TARGET_OS_EMBEDDED || TARGET_OS_IPHONE))
+if (TARGET_OS_MAC && !(TARGET_OS_EMBEDDED || TARGET_OS_IPHONE))
 extern class NSStream (NSSocketStreamCreationExtensions)
 + (void)getStreamsToHost:(NSHost *)host port:(Int)port inputStream:(NSInputStream **)inputStream outputStream:(NSOutputStream **)outputStream;
 }
-#endif
+endif
 
 // The NSInputStreamExtensions category contains additional initializers and convenience routines for dealing with NSInputStreams.
 extern class NSInputStream (NSInputStreamExtensions)
@@ -224,4 +224,5 @@ FOUNDATION_EXPORT NSString * const NSStreamNetworkServiceTypeVoIP	    NS_AVAILAB
 FOUNDATION_EXPORT NSString * const NSStreamNetworkServiceTypeVideo	    NS_AVAILABLE(10_7, 5_0);
 FOUNDATION_EXPORT NSString * const NSStreamNetworkServiceTypeBackground	    NS_AVAILABLE(10_7, 5_0);
 FOUNDATION_EXPORT NSString * const NSStreamNetworkServiceTypeVoice	    NS_AVAILABLE(10_7, 5_0);
+#end
 

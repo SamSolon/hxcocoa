@@ -1,6 +1,5 @@
 package objc.foundation;
 
-
 extern class NSXMLParser
 {
 
@@ -13,7 +12,7 @@ extern class NSXMLParser
 	//Methods
 	public function setShouldResolveExternalEntities( shouldResolveExternalEntities:Bool):Void;
 	public function parse():Bool;
-	public function initWithStream( stream:NSInputStream):Dynamic;
+//!!!!	public function initWithStream( stream:NSInputStream):Dynamic;
 	public function shouldResolveExternalEntities():Bool;
 	public function setShouldReportNamespacePrefixes( shouldReportNamespacePrefixes:Bool):Void;
 	public function initWithContentsOfURL( url:NSURL):Dynamic;
@@ -21,8 +20,8 @@ extern class NSXMLParser
 	public function initWithData( data:NSData):Dynamic;
 	public function setShouldProcessNamespaces( shouldProcessNamespaces:Bool):Void;
 	public function shouldReportNamespacePrefixes():Bool;
-	public function delegate():id<NSXMLParserDelegate>;
-	public function setDelegate( delegate:id<NSXMLParserDelegate>):Void;
+	public function delegate():NSXMLParserDelegate;
+	public function setDelegate( delegate:NSXMLParserDelegate):Void;
 	public function parser( parser:NSXMLParser,  name:String,  publicID:String,  systemID:String):Void;
 	//@:overload !!NEED CUSTOM META DATA !!
 	public function parser1( parser:NSXMLParser,  name:String,  publicID:String,  systemID:String,  notationName:String):Void;
@@ -67,7 +66,7 @@ extern class NSXMLParser
 	public function publicID():String;
 	public function systemID():String;
 }
-
+#if display
 extern enum NSXMLParserError
 {
 	NSXMLParserInternalError;
@@ -393,3 +392,4 @@ typedef NS_ENUM(Int, NSXMLParserError) {
     NSXMLParserNoDTDError = 94,
     NSXMLParserDelegateAbortedParseError = 512
 };
+#end
