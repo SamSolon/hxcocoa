@@ -8,6 +8,7 @@ import ios.ui.NSAttributedString;
 
 
 @:framework("UIKit")
+@:fakeEnum(Int)
 extern enum UIButtonType {
 	UIButtonTypeCustom;
 	UIButtonTypeRoundedRect;

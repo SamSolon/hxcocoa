@@ -229,7 +229,7 @@ extern enum UIViewAnimationTransition {
 }
 
 @:framework("UIKit")
-/*@:fakeEnum(Int)*/
+@:fakeEnum(Int)
 extern enum UIViewAutoresizing {
     UIViewAutoresizingNone;
     UIViewAutoresizingFlexibleLeftMargin;

@@ -5,6 +5,7 @@ import objc.foundation.NSRange;
 import objc.graphics.CGGeometry;
 
 @:framework("UIKit")
+@:fakeEnum(Int)
 extern enum UITextBorderStyle {
     UITextBorderStyleNone;
     UITextBorderStyleLine;
@@ -13,6 +14,7 @@ extern enum UITextBorderStyle {
 }
 
 @:framework("UIKit")
+@:fakeEnum(Int)
 extern enum UITextFieldViewMode {
     UITextFieldViewModeNever;
     UITextFieldViewModeWhileEditing;
