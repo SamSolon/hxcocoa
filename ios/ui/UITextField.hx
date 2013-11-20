@@ -1,5 +1,7 @@
 package ios.ui;
 
+import ios.ui.UITextInputTraits;
+
 import objc.foundation.NSObject;
 import objc.foundation.NSRange;
 import objc.graphics.CGGeometry;
@@ -23,7 +25,7 @@ extern enum UITextFieldViewMode {
 }
 
 @:framework("UIKit")
-extern class UITextField extends UIControl /*implements UITextInput*/ implements NSCoding {
+extern class UITextField extends UIControl implements UITextInput implements NSCoding {
 
 
 	public var text :String;                 // default is nil
@@ -74,6 +76,15 @@ extern class UITextField extends UIControl /*implements UITextInput*/ implements
 
 	public var clearsOnInsertion :Bool;// NS_AVAILABLE_IOS(6_0); // defaults to NO. if YES, the selection UI is hidden, and inserting text will replace the contents of the field. changing the selection will automatically set this to NO.
 
+	// Definitions for protocols -- since Haxe doesn't have that concept
+	
+	// UIKeyInput
+	public var hasText:Bool;
+	public function insertText(text:String):Void;
+	public function deleteBackward():Void;
+	
+	// UITextInputTraits
+	public var  autocapitalizationType:UITextAutocapitalizationType;
 }
 
 

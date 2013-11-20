@@ -11,6 +11,7 @@ package ios.ui;
 //
 
 @:framework("UIKit")
+@:fakeEnum(Int)
 extern enum UITextAutocapitalizationType {
     UITextAutocapitalizationTypeNone;
     UITextAutocapitalizationTypeWords;
@@ -124,9 +125,8 @@ extern enum UIReturnKeyType {
 @:framework("UIKit")
 extern interface UITextInputTraits {
 
+	public var  autocapitalizationType:UITextAutocapitalizationType; // default is UITextAutocapitalizationTypeSentences
 #if display
-
-	public var  UITextAutocapitalizationType autocapitalizationType; // default is UITextAutocapitalizationTypeSentences
 	public var  UITextAutocorrectionType autocorrectionType;         // default is UITextAutocorrectionTypeDefault
 	public var  UITextSpellCheckingType spellCheckingType NS_AVAILABLE_IOS(5_0); // default is UITextSpellCheckingTypeDefault;
 	public var  UIKeyboardType keyboardType;                         // default is UIKeyboardTypeDefault

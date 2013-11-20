@@ -8,14 +8,14 @@ package ios.ui;
 // which will be made available whenever a conforming responder becomes first responder.
 
 @:framework("UIKit")
-extern interface UIKeyInput <UITextInputTraits>
+extern interface UIKeyInput extends UITextInputTraits {
 
-- (BOOL)hasText;
-	public function insertText:(String *)text;
-	public function deleteBackward;
+	var hasText:Bool;
+	function insertText(text:String):Void;
+	function deleteBackward():Void;
 
 }
-
+#if display
 //===================================================================================================
 // Responders that implement the UITextInput protocol allow the system-provided keyboard to
 // offer more sophisticated behaviors based on a current selection and context.
@@ -68,9 +68,11 @@ extern class UIDictationPhrase extends NSObject {
 	public var NSArray *alternativeInterpretations;
 
 }
-
+#end
 @:framework("UIKit")
-extern interface UITextInput <UIKeyInput>
+extern interface UITextInput extends UIKeyInput {
+}
+#if display
 @required
 
 /* Methods for manipulating text. */
@@ -270,3 +272,4 @@ extern class UITextInputMode extends NSObject
 }
 
 UIKIT_EXTERN String *const UITextInputCurrentInputModeDidChangeNotification NS_AVAILABLE_IOS(4_2);
+#end
