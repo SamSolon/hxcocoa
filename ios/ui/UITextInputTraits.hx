@@ -126,14 +126,12 @@ extern enum UIReturnKeyType {
 extern interface UITextInputTraits {
 
 	public var  autocapitalizationType:UITextAutocapitalizationType; // default is UITextAutocapitalizationTypeSentences
-#if display
-	public var  UITextAutocorrectionType autocorrectionType;         // default is UITextAutocorrectionTypeDefault
-	public var  UITextSpellCheckingType spellCheckingType NS_AVAILABLE_IOS(5_0); // default is UITextSpellCheckingTypeDefault;
-	public var  UIKeyboardType keyboardType;                         // default is UIKeyboardTypeDefault
-	public var  UIKeyboardAppearance keyboardAppearance;             // default is UIKeyboardAppearanceDefault
-	public var  UIReturnKeyType returnKeyType;                       // default is UIReturnKeyDefault (See note under UIReturnKeyType enum)
-	public var  BOOL enablesReturnKeyAutomatically;                  // default is NO (when YES, will automatically disable return key when text widget has zero-length contents, and will automatically enable when text widget has non-zero-length contents)
-	public var (nonatomic,getter=isSecureTextEntry) BOOL secureTextEntry;       // default is NO
-#end
+	public var  autocorrectionType:UITextAutocorrectionType ;         // default is UITextAutocorrectionTypeDefault
+	public var  spellCheckingType:UITextSpellCheckingType; // NS_AVAILABLE_IOS(5_0); // default is UITextSpellCheckingTypeDefault;
+	public var  keyboardType:UIKeyboardType;                         // default is UIKeyboardTypeDefault
+	public var  keyboardAppearance:UIKeyboardAppearance ;             // default is UIKeyboardAppearanceDefault
+	public var  returnKeyType:UIReturnKeyType;                       // default is UIReturnKeyDefault (See note under UIReturnKeyType enum)
+	public var  enablesReturnKeyAutomatically:Bool;                  // default is NO (when YES, will automatically disable return key when text widget has zero-length contents, and will automatically enable when text widget has non-zero-length contents)
+	public var  secureTextEntry:Bool; //(nonatomic,getter=isSecureTextEntry) BOOL secureTextEntry;       // default is NO
 }
 

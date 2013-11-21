@@ -85,6 +85,13 @@ extern class UITextField extends UIControl implements UITextInput implements NSC
 	
 	// UITextInputTraits
 	public var  autocapitalizationType:UITextAutocapitalizationType;
+	public var  autocorrectionType:UITextAutocorrectionType ;         // default is UITextAutocorrectionTypeDefault
+	public var  spellCheckingType:UITextSpellCheckingType; // NS_AVAILABLE_IOS(5_0); // default is UITextSpellCheckingTypeDefault;
+	public var  keyboardType:UIKeyboardType;                         // default is UIKeyboardTypeDefault
+	public var  keyboardAppearance:UIKeyboardAppearance ;             // default is UIKeyboardAppearanceDefault
+	public var  returnKeyType:UIReturnKeyType;                       // default is UIReturnKeyDefault (See note under UIReturnKeyType enum)
+	public var  enablesReturnKeyAutomatically:Bool;                  // default is NO (when YES, will automatically disable return key when text widget has zero-length contents, and will automatically enable when text widget has non-zero-length contents)
+	public var  secureTextEntry:Bool; //(nonatomic,getter=isSecureTextEntry) BOOL secureTextEntry;       // default is NO
 }
 
 
