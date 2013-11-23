@@ -1,6 +1,7 @@
 package objc.foundation;
 
 @:framework("Foundation")
+@:fakeEnum(Int)
 extern enum NSURLBookmarkCreationOptions {
     NSURLBookmarkCreationPreferFileIDResolution;
     NSURLBookmarkCreationMinimalBookmark;
@@ -8,6 +9,7 @@ extern enum NSURLBookmarkCreationOptions {
 }
 
 @:framework("Foundation")
+@:fakeEnum(Int)
 extern enum NSURLBookmarkResolutionOptions {
     NSURLBookmarkResolutionWithoutUI;
     NSURLBookmarkResolutionWithoutMounting;

@@ -3,6 +3,7 @@ package objc.foundation;
 import objc.foundation.NSObject;
 
 @:framework("Foundation")
+@:fakeEnum(Int)
 extern enum NSComparisonResult {
 	NSOrderedAscending;
 	NSOrderedSame;
@@ -11,6 +12,7 @@ extern enum NSComparisonResult {
 private typedef NSStringCompareOptions = Int;
 
 @:framework("Foundation")
+@:fakeEnum(Int)
 extern enum NSStringEncoding {
 	NSASCIIStringEncoding;
 	NSNEXTSTEPStringEncoding;
@@ -39,6 +41,7 @@ extern enum NSStringEncoding {
 }
 
 @:framework("Foundation")
+@:fakeEnum(Int)
 extern enum NSStringEnumeration {
 	NSStringEnumerationByLines;
 	NSStringEnumerationByParagraphs;

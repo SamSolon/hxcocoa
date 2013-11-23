@@ -44,7 +44,7 @@ extern class NSStream {
 	//@:overload !!NEED CUSTOM META DATA !!
 	public function initWithURL1( url:NSURL,  shouldAppend:Bool):Dynamic;
 }
-
+@:fakeEnum(Int)
 extern enum NSStreamStatus
 {
 	NSStreamStatusNotOpen;
@@ -56,7 +56,7 @@ extern enum NSStreamStatus
 	NSStreamStatusClosed;
 	NSStreamStatusError;
 }
-
+@:fakeEnum(Int)
 extern enum NSStreamEvent
 {
 	NSStreamEventNone;
