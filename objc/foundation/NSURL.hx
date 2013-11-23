@@ -36,31 +36,53 @@ extern class NSURL extends NSObject {
 - initWithString:(NSString *)URLString relativeToURL:(NSURL *)baseURL; // It is an error for URLString to be nil
 	
 + (id)URLWithString:(NSString *)URLString relativeToURL:(NSURL *)baseURL;
+*/
+	public function absoluteString():String;
+//- (NSString *)absoluteString;
 
-- (NSString *)absoluteString;
-- (NSString *)relativeString; // The relative portion of a URL.  If baseURL is nil, or if the receiver is itself absolute, this is the same as absoluteString
-- (NSURL *)baseURL; // may be nil.
-- (NSURL *)absoluteURL; // if the receiver is itself absolute, this will return self.
+	public function relativeString():String;
+//- (NSString *)relativeString; // The relative portion of a URL.  If baseURL is nil, or if the receiver is itself absolute, this is the same as absoluteString
+
+	public function baseURL():NSURL;
+//- (NSURL *)baseURL; // may be nil.
+
+	public function absoluteURL():NSURL;
+//- (NSURL *)absoluteURL; // if the receiver is itself absolute, this will return self.
 
 // Any URL is composed of these two basic pieces.  The full URL would be the concatenation of [myURL scheme], ':', [myURL resourceSpecifier]
-- (NSString *)scheme;
-- (NSString *)resourceSpecifier;
+	public function scheme():String;
+//- (NSString *)scheme;
 
-- (NSString *)host;
-- (NSNumber *)port;
-- (NSString *)user;
-- (NSString *)password;
-- (NSString *)path;
-- (NSString *)fragment;
-- (NSString *)parameterString;
-- (NSString *)query;
-- (NSString *)relativePath; // The same as path if baseURL is nil
+	public function resourceSpecifier():String;
+//- (NSString *)resourceSpecifier;
 
-- (Bool)isFileURL; // Whether the scheme is file:; if [myURL isFileURL] is YES, then [myURL path] is suitable for input into NSFileManager or NSPathUtilities.
+	public function host():String;
+//	public function port():NSNumber;
+	public function user():String;
+	public function password():String;
+	public function path():String;
+	public function fragment():String;
+	public function parameterString():String;
+	public function query():String;
+	public function relativePath():String;
+	
+//- (NSString *)host;
+//- (NSNumber *)port;
+//- (NSString *)user;
+//- (NSString *)password;
+//- (NSString *)path;
+//- (NSString *)fragment;
+//- (NSString *)parameterString;
+//- (NSString *)query;
+//- (NSString *)relativePath; // The same as path if baseURL is nil
 
-- (NSURL *)standardizedURL;
+	public function isFileURL():Bool;
+//- (Bool)isFileURL; // Whether the scheme is file:; if [myURL isFileURL] is YES, then [myURL path] is suitable for input into NSFileManager or NSPathUtilities.
 
+	public function standardizedURL():NSURL;
+//- (NSURL *)standardizedURL;
 
+/*
 
 - (Bool)getResourceValue:(out id *)value forKey:(NSString *)key error:(out NSError **)error NS_AVAILABLE(10_6, 4_0);
 

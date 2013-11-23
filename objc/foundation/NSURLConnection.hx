@@ -6,7 +6,7 @@
 */
 
 package objc.foundation;
-
+#if display
 @class Array<>;
 @class NSURL;
 @class NSCachedURLResponse;
@@ -22,7 +22,7 @@ package objc.foundation;
 @class NSOperationQueue;
 
 @protocol NSURLConnectionDelegate;
-
+#end
 /*!
     @class NSURLConnection
     
@@ -103,27 +103,32 @@ package objc.foundation;
         customization of resource load, and do not allow the caller to
         respond to, e.g., authentication challenges.<p>
 */
+@:framework("Foundation")
 extern class NSURLConnection extends NSObject
 {
-    @private
-    NSURLConnectionInternal *_internal;
-}
+//    @private
+//    NSURLConnectionInternal *_internal;
+//}
 
 /* Designated initializer */
-- (id)initWithRequest:(NSURLRequest *)request delegate:(id)delegate startImmediately:(Bool)startImmediately NS_AVAILABLE(10_5, 2_0);
+	public function initWithRequest(request:NSURLRequest, delete:Dynamic, startImmediately:Bool):NSURLConnection;
+//- (id)initWithRequest:(NSURLRequest *)request delegate:(id)delegate startImmediately:(Bool)startImmediately NS_AVAILABLE(10_5, 2_0);
 
-- (id)initWithRequest:(NSURLRequest *)request delegate:(id)delegate;
-+ (NSURLConnection*)connectionWithRequest:(NSURLRequest *)request delegate:(id)delegate;
+//- (id)initWithRequest:(NSURLRequest *)request delegate:(id)delegate;
+	public static function connectionWithRequest(request:NSURLRequest, delegate:Dynamic):NSURLConnection;
+//+ (NSURLConnection*)connectionWithRequest:(NSURLRequest *)request delegate:(id)delegate;
 
-- (NSURLRequest *)originalRequest NS_AVAILABLE_IOS(5_0);
-- (NSURLRequest *)currentRequest NS_AVAILABLE_IOS(5_0);
+	public function originalRequest():NSURLRequest;
+//- (NSURLRequest *)originalRequest NS_AVAILABLE_IOS(5_0);
+	public function currentRequest():NSURLRequest;
+//- (NSURLRequest *)currentRequest NS_AVAILABLE_IOS(5_0);
 
-public function start NS_AVAILABLE(10_5, 2_0);
-public function cancel;
+	public function start():Void; // NS_AVAILABLE(10_5, 2_0);
+	public function cancel():Void;
 
-public function scheduleInRunLoop:(NSRunLoop *)aRunLoop forMode:(NSString *)mode NS_AVAILABLE(10_5, 2_0);
-public function unscheduleFromRunLoop:(NSRunLoop *)aRunLoop forMode:(NSString *)mode NS_AVAILABLE(10_5, 2_0);
-public function setDelegateQueue:(NSOperationQueue*) queue NS_AVAILABLE(10_7, 5_0);
+//public function scheduleInRunLoop:(NSRunLoop *)aRunLoop forMode:(NSString *)mode NS_AVAILABLE(10_5, 2_0);
+//public function unscheduleFromRunLoop:(NSRunLoop *)aRunLoop forMode:(NSString *)mode NS_AVAILABLE(10_5, 2_0);
+//public function setDelegateQueue:(NSOperationQueue*) queue NS_AVAILABLE(10_7, 5_0);
 
 
 /*! 
@@ -155,10 +160,11 @@ public function setDelegateQueue:(NSOperationQueue*) queue NS_AVAILABLE(10_7, 5_
 
         NO            
 */
-+ (Bool)canHandleRequest:(NSURLRequest *)request;
+	public static function canHandleRequest(request:NSURLRequest):Bool;
+//+ (Bool)canHandleRequest:(NSURLRequest *)request;
 
 }
-
+#if display
 /*!
     @protocol       NSURLConnectionDelegate
 
@@ -406,7 +412,7 @@ extern class NSURLConnection (NSURLConnectionSynchronousLoading)
 
 }
 
-#if NS_BLOCKS_AVAILABLE
+//#if NS_BLOCKS_AVAILABLE
 
 /*!
     @category NSURLConnection(NSURLConnectionQueuedLoading)
@@ -459,4 +465,7 @@ extern class NSURLConnection (NSURLConnectionQueuedLoading)
            
 }
                    
-#endif   
+                   
+//#endif
+#end
+

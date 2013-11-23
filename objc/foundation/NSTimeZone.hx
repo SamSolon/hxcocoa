@@ -1,6 +1,6 @@
 package objc.foundation;
 import objc.foundation.NSObject;
-private typedef NSTimeInterval = Int;
+typedef NSTimeInterval = Int;
 
 @:framework("Foundation")
 extern class NSTimeZone extends NSObject implements NSCopying implements NSSecureCoding {

@@ -6,15 +6,19 @@
 */
 
 package objc.foundation;
-#import <Foundation/NSDate.h>
 
+import objc.foundation.NSDate;
+import objc.foundation.NSTimeZone;
+
+private typedef NSInputStream = Dynamic;
+#if display
 @class NSData;
 @class NSDictionary;
 @class NSInputStream;
 @class NSString;
 @class NSURL;
 @class NSURLRequestInternal;
-
+#end
 /*!
     @header NSURLRequest.h
 
@@ -92,20 +96,21 @@ package objc.foundation;
     confirms its validity, otherwise the URL is loaded from the
     origin source.  Unimplemented.
 */
-enum
+@:framework("Foundation")
+@:fakeEnum(Int)
+extern enum NSURLRequestCachePolicy
 {
-    NSURLRequestUseProtocolCachePolicy = 0,
+    NSURLRequestUseProtocolCachePolicy;
 
-    NSURLRequestReloadIgnoringLocalCacheData = 1,
-    NSURLRequestReloadIgnoringLocalAndRemoteCacheData = 4, // Unimplemented
-    NSURLRequestReloadIgnoringCacheData = NSURLRequestReloadIgnoringLocalCacheData,
+    NSURLRequestReloadIgnoringLocalCacheData;
+    NSURLRequestReloadIgnoringLocalAndRemoteCacheData; // Unimplemented
+    NSURLRequestReloadIgnoringCacheData;
 
-    NSURLRequestReturnCacheDataElseLoad = 2,
-    NSURLRequestReturnCacheDataDontLoad = 3,
+    NSURLRequestReturnCacheDataElseLoad;
+    NSURLRequestReturnCacheDataDontLoad;
 
-    NSURLRequestReloadRevalidatingCacheData = 5, // Unimplemented
-};
-typedef NSUInteger NSURLRequestCachePolicy;
+    NSURLRequestReloadRevalidatingCacheData; // Unimplemented
+}
 
 /*!
  @enum NSURLRequestNetworkServiceType
@@ -130,16 +135,16 @@ typedef NSUInteger NSURLRequestCachePolicy;
  @constant NSURLNetworkServiceTypeVoice Specifies that the request is for voice data.
 
 */
-enum
+@:framework("Foundation")
+@:fakeEnum(Int)
+extern enum NSURLRequestNetworkServiceType
 {
-    NSURLNetworkServiceTypeDefault = 0,	// Standard internet traffic
-    NSURLNetworkServiceTypeVoIP = 1,	// Voice over IP control traffic
-    NSURLNetworkServiceTypeVideo = 2,	// Video traffic
-    NSURLNetworkServiceTypeBackground = 3, // Background traffic
-    NSURLNetworkServiceTypeVoice = 4	   // Voice data
-};
-typedef NSUInteger NSURLRequestNetworkServiceType;
-
+    NSURLNetworkServiceTypeDefault;	// Standard internet traffic
+    NSURLNetworkServiceTypeVoIP;	// Voice over IP control traffic
+    NSURLNetworkServiceTypeVideo;	// Video traffic
+    NSURLNetworkServiceTypeBackground; // Background traffic
+    NSURLNetworkServiceTypeVoice;	   // Voice data
+}
 
 /*!
     @class NSURLRequest
@@ -172,11 +177,14 @@ typedef NSUInteger NSURLRequestNetworkServiceType;
     which can are used to perform the load of a URL, or as input to the
     NSURLConnection class method which performs synchronous loads.
 */
-extern class NSURLRequest extends NSObject implements NSObject, NSCopying, NSMutableCopying>
+@:framework("Foundation")
+extern class NSURLRequest
+//	extends NSObject
+//	extends NSCopying
+//	extends NSMutableCopying
 {
-    @private
-    NSURLRequestInternal *_internal;
-}
+//    private var _internal:NSURLRequestInternal;
+
 
 /*! 
     @method requestWithURL:
@@ -188,7 +196,8 @@ extern class NSURLRequest extends NSObject implements NSObject, NSCopying, NSMut
     @param URL The URL for the request.
     @result A newly-created and autoreleased NSURLRequest instance.
 */
-+ (id)requestWithURL:(NSURL *)URL;
+	public static function requestWithURL(URL:NSURL):Dynamic; 
+//+ (id)requestWithURL:(NSURL *)URL;
 
 /*! 
     @method requestWithURL:cachePolicy:timeoutInterval:
@@ -201,7 +210,8 @@ extern class NSURLRequest extends NSObject implements NSObject, NSCopying, NSMut
     timeout intervals.
     @result A newly-created and autoreleased NSURLRequest instance. 
 */
-+ (id)requestWithURL:(NSURL *)URL cachePolicy:(NSURLRequestCachePolicy)cachePolicy timeoutInterval:(NSTimeInterval)timeoutInterval;
+//	public static function requestWithURL(URL:NSURL, ?cachePolicy:NSURLRequestCachePolicy, ?timeoutInterval:NSTimeInterval):Dynamic;
+//+ (id)requestWithURL:(NSURL *)URL cachePolicy:(NSURLRequestCachePolicy)cachePolicy timeoutInterval:(NSTimeInterval)timeoutInterval;
 
 /*! 
     @method initWithURL:
@@ -212,7 +222,8 @@ extern class NSURLRequest extends NSObject implements NSObject, NSCopying, NSMut
     @param URL The URL for the request. 
     @result An initialized NSURLRequest. 
 */
-- (id)initWithURL:(NSURL *)URL;
+//	public function initWithURL(URL:NSURL):Dynamic;
+//- (id)initWithURL:(NSURL *)URL;
 
 /*! 
     @method initWithURL:
@@ -227,21 +238,24 @@ extern class NSURLRequest extends NSObject implements NSObject, NSCopying, NSMut
     timeout intervals.
     @result An initialized NSURLRequest. 
 */
-- (id)initWithURL:(NSURL *)URL cachePolicy:(NSURLRequestCachePolicy)cachePolicy timeoutInterval:(NSTimeInterval)timeoutInterval;
+	public function initWithURL(URL:NSURL, ?cachePolicy:NSURLRequestCachePolicy, ?timeoutInterval:NSTimeInterval):Dynamic;
+//- (id)initWithURL:(NSURL *)URL cachePolicy:(NSURLRequestCachePolicy)cachePolicy timeoutInterval:(NSTimeInterval)timeoutInterval;
 
 /*! 
     @method URL
     @abstract Returns the URL of the receiver. 
     @result The URL of the receiver. 
 */
-- (NSURL *)URL;
+	public function URL():NSURL;
+//- (NSURL *)URL;
 
 /*! 
     @method cachePolicy
     @abstract Returns the cache policy of the receiver. 
     @result The cache policy of the receiver. 
 */
-- (NSURLRequestCachePolicy)cachePolicy;
+	public function cachePolicy():NSURLRequestCachePolicy;
+//- (NSURLRequestCachePolicy)cachePolicy;
 
 /*! 
     @method timeoutInterval
@@ -258,7 +272,8 @@ extern class NSURLRequest extends NSObject implements NSObject, NSCopying, NSMut
     in seconds.
     @result The timeout interval of the receiver. 
 */
-- (NSTimeInterval)timeoutInterval;
+	public function timeoutInterval():NSTimeInterval;
+//- (NSTimeInterval)timeoutInterval;
 
 /*!
     @method mainDocumentURL
@@ -271,7 +286,8 @@ extern class NSURLRequest extends NSObject implements NSObject, NSCopying, NSMut
     in the future. 
     @result The main document URL.
 */
-- (NSURL *)mainDocumentURL;
+	public function mainDocumentURL():NSURL;
+//- (NSURL *)mainDocumentURL;
 
 /*!
  @method networkServiceType
@@ -280,7 +296,8 @@ extern class NSURLRequest extends NSObject implements NSObject, NSCopying, NSMut
  not explicitly set a networkServiceType (using the setNetworkServiceType method).
  @result The NSURLRequestNetworkServiceType associated with this request.
  */
-- (NSURLRequestNetworkServiceType)networkServiceType NS_AVAILABLE(10_7, 4_0);
+ 	public function networkServiceType():NSURLRequestNetworkServiceType;
+//- (NSURLRequestNetworkServiceType)networkServiceType NS_AVAILABLE(10_7, 4_0);
 
 /*! 
  @method allowsCellularAccess:
@@ -289,7 +306,8 @@ extern class NSURLRequest extends NSObject implements NSObject, NSCopying, NSMut
  @result YES if the receiver is allowed to use the built in cellular radios to
  satify the request, NO otherwise.
  */
-- (Bool)allowsCellularAccess  NS_AVAILABLE(10_8, 6_0);
+ 	public function allowsCelluarAccess():Bool;
+//- (Bool)allowsCellularAccess  NS_AVAILABLE(10_8, 6_0);
 
 }
 
@@ -324,21 +342,35 @@ extern class NSURLRequest extends NSObject implements NSObject, NSCopying, NSMut
     example.
     </ul>
 */
-extern class NSMutableURLRequest : NSURLRequest
+@:framework("Foundation")
+extern class NSMutableURLRequest extends NSURLRequest {
+
+/*! 
+    @method requestWithURL:
+    @abstract Allocates and initializes an NSURLRequest with the given
+    URL.
+    @discussion Default values are used for cache policy
+    (NSURLRequestUseProtocolCachePolicy) and timeout interval (60
+    seconds).
+    @param URL The URL for the request.
+    @result A newly-created and autoreleased NSURLRequest instance.
+*/
+	public static function requestWithURL(URL:NSURL):NSMutableURLRequest; 
+//+ (id)requestWithURL:(NSURL *)URL;
 
 /*! 
     @method setURL
     @abstract Sets the URL of the receiver. 
     @param URL The new URL for the receiver. 
 */
-public function setURL:(NSURL *)URL;
+public function setURL(URL:NSURL):Void;
 
 /*! 
     @method setCachePolicy:
     @abstract Sets the cache policy of the receiver. 
     @param policy The new NSURLRequestCachePolicy for the receiver. 
 */
-public function setCachePolicy:(NSURLRequestCachePolicy)policy;
+public function setCachePolicy(policy:NSURLRequestCachePolicy):Void;
 
 /*! 
     @method setTimeoutInterval:
@@ -355,7 +387,7 @@ public function setCachePolicy:(NSURLRequestCachePolicy)policy;
     in seconds.
     @param seconds The new timeout interval of the receiver. 
 */
-public function setTimeoutInterval:(NSTimeInterval)seconds;
+public function setTimeoutInterval(seconds:NSTimeInterval):Void;
 
 /*!
     @method setMainDocumentURL:
@@ -371,7 +403,7 @@ public function setTimeoutInterval:(NSTimeInterval)seconds;
     framework. A fully functional version of this method will be available 
     in the future. 
 */
-public function setMainDocumentURL:(NSURL *)URL;
+public function setMainDocumentURL(URL:NSURL):Void;
 
 /*!
  @method setNetworkServiceType:
@@ -380,7 +412,7 @@ public function setMainDocumentURL:(NSURL *)URL;
  @discussion This method is used to provide the network layers with a hint as to the purpose
  of the request.  Most clients should not need to use this method.
  */
-public function setNetworkServiceType:(NSURLRequestNetworkServiceType)networkServiceType NS_AVAILABLE(10_7, 4_0);
+public function setNetworkServiceType(networkServiceType:NSURLRequestNetworkServiceType):Void; // NS_AVAILABLE(10_7, 4_0);
 
 /*! 
  @method setAllowsCellularAccess
@@ -389,9 +421,9 @@ public function setNetworkServiceType:(NSURLRequestNetworkServiceType)networkSer
  @param allow NO if the receiver should not be allowed to use the built in
  cellular radios to satisfy the request, YES otherwise.  The default is YES.
  */
-public function setAllowsCellularAccess:(Bool)allow NS_AVAILABLE(10_8, 6_0);
+public function setAllowsCellularAccess(allow:Bool):Void; // NS_AVAILABLE(10_8, 6_0);
 
-}
+//}
 
 
 
@@ -400,14 +432,15 @@ public function setAllowsCellularAccess:(Bool)allow NS_AVAILABLE(10_8, 6_0);
     The NSHTTPURLRequest on NSURLRequest provides methods for accessing
     information specific to HTTP protocol requests.
 */
-extern class NSURLRequest (NSHTTPURLRequest) 
+//extern class NSURLRequest (NSHTTPURLRequest) 
 
 /*! 
     @method HTTPMethod
     @abstract Returns the HTTP request method of the receiver. 
     @result the HTTP request method of the receiver. 
 */
-- (NSString *)HTTPMethod;
+	public function HTTPMethod():String;
+//- (NSString *)HTTPMethod;
 
 /*! 
     @method allHTTPHeaderFields
@@ -416,7 +449,8 @@ extern class NSURLRequest (NSHTTPURLRequest)
     @result a dictionary containing all the HTTP header fields of the
     receiver.
 */
-- (NSDictionary *)allHTTPHeaderFields;
+	public function allHTTPHeaderFields():Map<String,String>;
+//- (NSDictionary *)allHTTPHeaderFields;
 
 /*! 
     @method valueForHTTPHeaderField:
@@ -428,7 +462,8 @@ extern class NSURLRequest (NSHTTPURLRequest)
     @result the value associated with the given header field, or nil if
     there is no value associated with the given header field.
 */
-- (NSString *)valueForHTTPHeaderField:(NSString *)field;
+	public function valueForHTTPHeaderField(field:String):String;
+//- (NSString *)valueForHTTPHeaderField:(NSString *)field;
 
 /*! 
     @method HTTPBody
@@ -437,7 +472,8 @@ extern class NSURLRequest (NSHTTPURLRequest)
     in done in an HTTP POST request.
     @result The request body data of the receiver. 
 */
-- (NSData *)HTTPBody;
+	public function HTTPBody():NSData;
+//- (NSData *)HTTPBody;
 
 /*!
     @method HTTPBodyStream
@@ -451,7 +487,8 @@ extern class NSURLRequest (NSHTTPURLRequest)
     NSCoding protocol
     @result The request body stream of the receiver.
 */
-- (NSInputStream *)HTTPBodyStream;
+	public function HTTPBodyStream():NSInputStream;
+//- (NSInputStream *)HTTPBodyStream;
 
 /*! 
     @method HTTPShouldHandleCookies
@@ -461,7 +498,8 @@ extern class NSURLRequest (NSHTTPURLRequest)
     @result YES if cookies will be sent with and set for this request; 
     otherwise NO.
 */
-- (Bool)HTTPShouldHandleCookies;
+	public function HTTPShouldHandleCookies():Bool;
+//- (Bool)HTTPShouldHandleCookies;
 
 /*!
  @method HTTPShouldUsePipelining
@@ -469,9 +507,10 @@ extern class NSURLRequest (NSHTTPURLRequest)
  @result YES if the receiver should transmit before the previous response is received. 
  NO if the receiver should wait for the previous response before transmitting.
  */
-- (Bool)HTTPShouldUsePipelining NS_AVAILABLE(10_7, 4_0);
+ 	public function HTTPShouldUsePipelining():Bool;
+//- (Bool)HTTPShouldUsePipelining NS_AVAILABLE(10_7, 4_0);
 
-}
+//}
 
 
 
@@ -480,14 +519,14 @@ extern class NSURLRequest (NSHTTPURLRequest)
     The NSMutableHTTPURLRequest on NSMutableURLRequest provides methods
     for configuring information specific to HTTP protocol requests.
 */
-extern class NSMutableURLRequest (NSMutableHTTPURLRequest) 
+//extern class NSMutableURLRequest (NSMutableHTTPURLRequest) 
 
 /*! 
     @method setHTTPMethod:
     @abstract Sets the HTTP request method of the receiver. 
     @param method the new HTTP request method for the receiver.
 */
-public function setHTTPMethod:(NSString *)method;
+public function setHTTPMethod(method:String):Void;
 
 /*! 
     @method setAllHTTPHeaderFields:
@@ -502,7 +541,7 @@ public function setHTTPMethod:(NSString *)method;
     message, the key-value pair is skipped.
     @param headerFields a dictionary containing HTTP header fields.
 */
-public function setAllHTTPHeaderFields:(NSDictionary *)headerFields;
+public function setAllHTTPHeaderFields(headerFields:Map<String,String>):Void;
 
 /*! 
     @method setValue:forHTTPHeaderField:
@@ -514,7 +553,7 @@ public function setAllHTTPHeaderFields:(NSDictionary *)headerFields;
     @param value the header field value. 
     @param field the header field name (case-insensitive). 
 */
-public function setValue:(NSString *)value forHTTPHeaderField:(NSString *)field;
+public function setValue(value:String, forHTTPHeaderField:String):Void;
 
 /*! 
     @method addValue:forHTTPHeaderField:
@@ -530,7 +569,7 @@ public function setValue:(NSString *)value forHTTPHeaderField:(NSString *)field;
     @param value the header field value. 
     @param field the header field name (case-insensitive). 
 */
-public function addValue:(NSString *)value forHTTPHeaderField:(NSString *)field;
+public function addValue(value:String, forHTTPHeaderField:String):Void;
 
 /*! 
     @method setHTTPBody:
@@ -539,7 +578,7 @@ public function addValue:(NSString *)value forHTTPHeaderField:(NSString *)field;
     in done in an HTTP POST request.
     @param data the new request body data for the receiver.
 */
-public function setHTTPBody:(NSData *)data;
+public function setHTTPBody(data:NSData):Void;
 
 /*!
     @method setHTTPBodyStream:
@@ -551,7 +590,7 @@ public function setHTTPBody:(NSData *)data;
     - setting one will clear the other. 
     @param inputStream the new input stream for use by the receiver
 */
-public function setHTTPBodyStream:(NSInputStream *)inputStream;
+public function setHTTPBodyStream(inputStream:NSInputStream):Void;
 
 /*! 
     @method setHTTPShouldHandleCookies
@@ -563,7 +602,7 @@ public function setHTTPBodyStream:(NSInputStream *)inputStream;
     stored to the cookie manager by default.
     NOTE: In releases prior to 10.3, this value is ignored
 */
-public function setHTTPShouldHandleCookies:(Bool)should;
+public function setHTTPShouldHandleCookies(should:Bool):Void;
 
 /*!
  @method setHTTPShouldUsePipelining
@@ -579,7 +618,7 @@ public function setHTTPShouldHandleCookies:(Bool)should;
  with these servers, requests may have to wait for the previous response before 
  transmitting.
  */
-public function setHTTPShouldUsePipelining:(Bool)shouldUsePipelining NS_AVAILABLE(10_7, 4_0);
+public function setHTTPShouldUsePipelining(shouldUsePipelining:Bool):Void; // NS_AVAILABLE(10_7, 4_0);
 
 }
 
