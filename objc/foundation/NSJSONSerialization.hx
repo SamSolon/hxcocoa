@@ -48,6 +48,7 @@ extern class NSJSONSerialization extends NSObject {
 }
 
 @:framework("Foundation")
+@:fakeEnum(Int)
 extern enum NSJSONReadingOptions
 {
 	NSJSONReadingMutableContainers;
@@ -56,6 +57,7 @@ extern enum NSJSONReadingOptions
 }
 
 @:framework("Foundation")
+@:fakeEnum(Int)
 extern enum NSJSONWritingOptions
 {
 	NSJSONWritingPrettyPrinted;
