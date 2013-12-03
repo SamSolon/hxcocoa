@@ -19,6 +19,6 @@ extern class NSHTTPURLResponse extends NSURLResponse {
 //	public function initWithURL (url:NSURL, statusCode:Int, HTTPVersion:String, headerFields:NSDictionary) :NSHTTPURLResponse;
 	public function statusCode () :Int;
 	public function allHeaderFields () :NSDictionary;
-	public function localizedStringForStatusCode (statusCode:Int) :String;
+	public static function localizedStringForStatusCode (statusCode:Int) :String;
 	
 }
