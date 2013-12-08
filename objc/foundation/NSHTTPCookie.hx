@@ -1,28 +1,28 @@
 package objc.foundation;
 
-
+@:framework("Foundation")
 extern class NSHTTPCookie
 {
 
 	//Constants
-	static public inline var null:NSHTTPCookieName;
-	static public inline var null:NSHTTPCookieValue;
-	static public inline var null:NSHTTPCookieOriginURL;
-	static public inline var null:NSHTTPCookieVersion;
-	static public inline var null:NSHTTPCookieDomain;
-	static public inline var null:NSHTTPCookiePath;
-	static public inline var null:NSHTTPCookieSecure;
-	static public inline var null:NSHTTPCookieExpires;
-	static public inline var null:NSHTTPCookieComment;
-	static public inline var null:NSHTTPCookieCommentURL;
-	static public inline var null:NSHTTPCookieDiscard;
-	static public inline var null:NSHTTPCookieMaximumAge;
-	static public inline var null:NSHTTPCookiePort;
+	static public var NSHTTPCookieName:String;
+	static public var NSHTTPCookieValue:String;
+	static public var NSHTTPCookieOriginURL:String;
+	static public var NSHTTPCookieVersion:String;
+	static public var NSHTTPCookieDomain:String;
+	static public var NSHTTPCookiePath:String;
+	static public var NSHTTPCookieSecure:String;
+	static public var NSHTTPCookieExpires:String;
+	static public var NSHTTPCookieComment:String;
+	static public var NSHTTPCookieCommentURL:String;
+	static public var NSHTTPCookieDiscard:String;
+	static public var NSHTTPCookieMaximumAge:String;
+	static public var NSHTTPCookiePort:String;
 
 	//Static Methods
 	public function cookieWithProperties( properties:NSDictionary):Dynamic;
-	public function cookiesWithResponseHeaderFields( headerFields:NSDictionary,  URL:NSURL):Array<>;
-	public function requestHeaderFieldsWithCookies( cookies:Array<>):NSDictionary;
+	public function cookiesWithResponseHeaderFields( headerFields:NSDictionary,  URL:NSURL):Array<NSHTTPCookie>;
+	public function requestHeaderFieldsWithCookies( cookies:Array<NSHTTPCookie>):NSDictionary;
 
 	//Properties
 
@@ -34,7 +34,7 @@ extern class NSHTTPCookie
 	public function isSessionOnly():Bool;
 	public function isHTTPOnly():Bool;
 	public function commentURL():NSURL;
-	public function portList():Array<>;
+	public function portList():Array<Null<Int>>;
 	public function version():Int;
 	public function isSecure():Bool;
 	public function initWithProperties( properties:NSDictionary):Dynamic;
