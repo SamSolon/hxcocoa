@@ -9,6 +9,7 @@ import ios.ui.UIGeometry;
 
 @:framework("UIKit")
 @:require(ios6)
+@:fakeEnum(Int)
 extern enum UICollectionViewScrollDirection {
     UICollectionViewScrollDirectionVertical;
     UICollectionViewScrollDirectionHorizontal;
