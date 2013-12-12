@@ -86,7 +86,7 @@ extern interface UICollectionViewDelegate {
 @:require(ios6)
 extern class UICollectionView extends UIScrollView {
 
-	//public function initWithFrame (frame:CGRect, collectionViewLayout:UICollectionViewLayout) :UICollectionView;
+	public function initWithFrame (frame:CGRect, collectionViewLayout:UICollectionViewLayout) :UICollectionView;
 
 	public var collectionViewLayout :UICollectionViewLayout;
 	//public var delegate :UICollectionViewDelegate;
