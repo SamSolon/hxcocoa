@@ -102,7 +102,7 @@ extern class UICollectionView extends UIScrollView {
 	//public function registerClass (Class)viewClass forSupplementaryViewOfKind (String *)elementKind withReuseIdentifier (String *)identifier;
 	//public function registerNib (UINib *)nib forSupplementaryViewOfKind (String *)kind withReuseIdentifier (String *)identifier;
 
-	public function dequeueReusableCellWithReuseIdentifier (identifier:String, forIndexPath:NSIndexPath) :Dynamic;
+	public function dequeueReusableCellWithReuseIdentifier (identifier:String, forIndexPath:NSIndexPath) :UICollectionViewCell;
 	public function dequeueReusableSupplementaryViewOfKind (elementKind:String, withReuseIdentifier:String, forIndexPath:NSIndexPath) :Dynamic;
 
 // These properties control whether items can be selected, and if so, whether multiple items can be simultaneously selected.
