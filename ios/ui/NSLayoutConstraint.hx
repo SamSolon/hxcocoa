@@ -4,11 +4,14 @@ import objc.foundation.NSObject;
 import objc.foundation.NSDictionary;
 import objc.graphics.CGGeometry;
 
+@:fakeEnum(Int)
 extern enum NSLayoutRelation {
     NSLayoutRelationLessThanOrEqual;
     NSLayoutRelationEqual;
     NSLayoutRelationGreaterThanOrEqual;
 }
+
+@:fakeEnum(Int)
 extern enum NSLayoutAttribute {
     NSLayoutAttributeLeft;
     NSLayoutAttributeRight;
@@ -24,6 +27,8 @@ extern enum NSLayoutAttribute {
     
     NSLayoutAttributeNotAnAttribute;
 }
+
+@:fakeEnum(INt)
 extern enum NSLayoutFormatOptions {
     NSLayoutFormatAlignAllLeft;
     NSLayoutFormatAlignAllRight;
@@ -44,6 +49,8 @@ extern enum NSLayoutFormatOptions {
     
     NSLayoutFormatDirectionMask; 
 }
+
+@:fakeEnum(Int)
 extern enum UILayoutPriority {
     UILayoutPriorityRequired; // a required constraint.  Do not exceed this.
     UILayoutPriorityDefaultHigh; // this is the priority level with which a button resists compressing its content.

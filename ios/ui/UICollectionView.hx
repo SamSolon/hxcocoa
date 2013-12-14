@@ -99,7 +99,8 @@ extern class UICollectionView extends UIScrollView {
 	public function registerClass (cellClass:Class<Dynamic>, forCellWithReuseIdentifier:String) :Void;
 	public function registerNib (nib:UINib, forCellWithReuseIdentifier:String) :Void;
 
-	//public function registerClass (Class)viewClass forSupplementaryViewOfKind (String *)elementKind withReuseIdentifier (String *)identifier;
+	@:sel("registerClass:forSupplementaryViewOfKind:withReuseIdentifier:")
+	public function registerClassForSupplementaryViewOfKind (viewClass:Class<Dynamic>, forSupplementaryViewOfKind:String, withReuseIdentifier:String):Void;
 	//public function registerNib (UINib *)nib forSupplementaryViewOfKind (String *)kind withReuseIdentifier (String *)identifier;
 
 	public function dequeueReusableCellWithReuseIdentifier (identifier:String, forIndexPath:NSIndexPath) :UICollectionViewCell;

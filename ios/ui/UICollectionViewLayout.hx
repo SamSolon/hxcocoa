@@ -30,6 +30,9 @@ extern class UICollectionViewLayoutAttributes extends NSObject {
 	public var representedElementCategory :UICollectionElementCategory;
 	public var representedElementKind :String; // nil when representedElementCategory is UICollectionElementCategoryCell
 
+	public static function layoutAttributesForCellWithIndexPath(indexPath:NSIndexPath):UICollectionViewLayoutAttributes;
+	public static function layoutAttributesForSupplementaryViewOfKind(elementKind:String, withIndexPath:NSIndexPath):UICollectionViewLayoutAttributes;
+	public static function layoutAttributeForDecorationViewOfKind(decorationViewKind:String, withIndexPath:NSIndexPath):UICollectionViewLayoutAttributes;
 //+ (instancetype)layoutAttributesForCellWithIndexPath:(NSIndexPath *)indexPath;
 //+ (instancetype)layoutAttributesForSupplementaryViewOfKind:(String *)elementKind withIndexPath:(NSIndexPath *)indexPath;
 //+ (instancetype)layoutAttributesForDecorationViewOfKind:(String *)decorationViewKind withIndexPath:(NSIndexPath*)indexPath;
@@ -98,7 +101,7 @@ extern class UICollectionViewLayout extends NSObject {
 	public function targetContentOffsetForProposedContentOffset (proposedContentOffset:CGPoint, withScrollingVelocity:CGPoint) :CGPoint; // return a point at which to rest after scrolling - for layouts that want snap-to-point scrolling behavior
 
 	public function collectionViewContentSize():CGSize;
-	// Subclasses must override this method and use it to return the width and height of the collection view’s content. These values represent the width and height of all the content, not just the content that is currently visible. The collection view uses this information to configure its own content size to facilitate scrolling.
+	// Subclasses must override this method and use it to return the width and height of the collection views content. These values represent the width and height of all the content, not just the content that is currently visible. The collection view uses this information to configure its own content size to facilitate scrolling.
 
 	// (UpdateSupportHooks)
 
