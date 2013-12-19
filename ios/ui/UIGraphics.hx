@@ -2,25 +2,29 @@
 //  UIGraphics.h
 package ios.ui;
 
+import objc.graphics.CGContext;
+import objc.graphics.CGGeometry;
+
 @:framework("UIKit")
-extern class UIGeometry {
+extern class UIGraphics {
 	
-@:c public static function UIGraphicsGetCurrentContext() :CGContextRef;
-@:c public static function UIGraphicsPushContext(context:CGContextRef) :Void;
-@:c public static function UIGraphicsPopContext() :Void;
+@:nativeImpl @:c public static function UIGraphicsGetCurrentContext() :CGContextRef;
+@:nativeImpl @:c public static function UIGraphicsPushContext(context:CGContextRef) :Void;
+@:nativeImpl @:c public static function UIGraphicsPopContext() :Void;
 
-@:c public static function UIRectFillUsingBlendMode(CGRect rect, CGBlendMode blendMode);
-@:c public static function UIRectFill(CGRect rect);
+@:nativeImpl @:c public static function UIRectFillUsingBlendMode(rect:CGRect, blendMode:CGBlendMode):Void;
+@:nativeImpl @:c public static function UIRectFill(rect:CGRect):Void;
 
-@:c public static function UIRectFrameUsingBlendMode(CGRect rect, CGBlendMode blendMode);
-@:c public static function UIRectFrame(CGRect rect);
+@:nativeImpl @:c public static function UIRectFrameUsingBlendMode(rect:CGRect, blendMode:CGBlendMode):Void;
+@:nativeImpl @:c public static function UIRectFrame(rect:CGRect):Void;
 
-@:c public static function UIRectClip(CGRect rect);
+@:nativeImpl @:c public static function UIRectClip(rect:CGRect):Void;
 
 // UIImage context
 
-@:c public static function UIGraphicsBeginImageContext(CGSize size);
-@:c public static function UIGraphicsBeginImageContextWithOptions(CGSize size, BOOL opaque, Float scale) NS_AVAILABLE_IOS(4_0);
+#if display
+@:c public static function UIGraphicsBeginImageContext(size:CGSize):Void;
+@:c public static function UIGraphicsBeginImageContextWithOptions(size:CGSize, opaque:Bool, scale:Float):Void; // NS_AVAILABLE_IOS(4_0);
 UIKIT_EXTERN UIImage* UIGraphicsGetImageFromCurrentImageContext(void);
 @:c public static function UIGraphicsEndImageContext(void); 
 
@@ -38,5 +42,5 @@ UIKIT_EXTERN CGRect UIGraphicsGetPDFContextBounds(void) NS_AVAILABLE_IOS(3_2);
 @:c public static function UIGraphicsSetPDFContextURLForRect(NSURL *url, CGRect rect) NS_AVAILABLE_IOS(3_2);
 @:c public static function UIGraphicsAddPDFContextDestinationAtPoint(String *name, CGPoint point) NS_AVAILABLE_IOS(3_2);
 @:c public static function UIGraphicsSetPDFContextDestinationForRect(String *name, CGRect rect) NS_AVAILABLE_IOS(3_2);
-
+#end
 }
