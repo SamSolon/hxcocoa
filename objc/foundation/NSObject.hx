@@ -20,8 +20,10 @@ extern class NSObject {
 	
 	public function performSelectorInBackground (aSelector:SEL, withObject:Dynamic):Void;
 	
-/*	function performSelector:withObject:afterDelay:
-	function performSelector:withObject:afterDelay:inModes:
+	@:sel("performSelector:withObject:afterDelay:")
+	public function performSelectorWithObjectAfterDelay(aSelector:SEL, withObject:Dynamic, afterDelay:Float):Void;
+	
+/*	function performSelector:withObject:afterDelay:inModes:
 	function performSelectorOnMainThread:withObject:waitUntilDone:
 	function performSelectorOnMainThread:withObject:waitUntilDone:modes:
 	function performSelector:onThread:withObject:waitUntilDone:
