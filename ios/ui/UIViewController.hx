@@ -10,6 +10,7 @@ import ios.ui.UIBarButtonItem;
 import ios.ui.UIView;
 
 @:framework("UIKit")
+@:fakeEnum(Int)
 extern enum UIModalTransitionStyle {
     UIModalTransitionStyleCoverVertical;
     UIModalTransitionStyleFlipHorizontal;
@@ -18,6 +19,7 @@ extern enum UIModalTransitionStyle {
 }
 
 @:framework("UIKit")
+@:fakeEnum(Int)
 extern enum UIModalPresentationStyle {
     UIModalPresentationFullScreen;
     UIModalPresentationPageSheet;
