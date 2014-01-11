@@ -4,59 +4,68 @@
 	All rights reserved.
 */
 
-#import <Foundation/Array<>.h>
-#import <Foundation/NSOrderedSet.h>
-#import <Foundation/NSSet.h>
+package objc.foundation;
+
+//#import <Foundation/Array<>.h>
+//#import <Foundation/NSOrderedSet.h>
+//#import <Foundation/NSSet.h>
 
 
-@class NSIndexSet, NSString;
+//@class NSIndexSet, NSString;
 
 /* Options for use with -addObserver:forKeyPath:options:context: and -addObserver:toObjectsAtIndexes:forKeyPath:options:context:.
 */
-enum {
+@:framework("Foundation")
+@:fakeEnum(Int)
+extern enum NSKeyValueObservingOptions{
 
     /* Whether the change dictionaries sent in notifications should contain NSKeyValueChangeNewKey and NSKeyValueChangeOldKey entries, respectively.
     */
-    NSKeyValueObservingOptionNew = 0x01,
-    NSKeyValueObservingOptionOld = 0x02,
+    NSKeyValueObservingOptionNew; // = 0x01,
+    NSKeyValueObservingOptionOld; // = 0x02,
 
-#if MAC_OS_X_VERSION_10_5 <= MAC_OS_X_VERSION_MAX_ALLOWED || __IPHONE_2_0 <= __IPHONE_OS_VERSION_MAX_ALLOWED
+//#if MAC_OS_X_VERSION_10_5 <= MAC_OS_X_VERSION_MAX_ALLOWED || __IPHONE_2_0 <= __IPHONE_OS_VERSION_MAX_ALLOWED
 
     /* Whether a notification should be sent to the observer immediately, before the observer registration method even returns. The change dictionary in the notification will always contain an NSKeyValueChangeNewKey entry if NSKeyValueObservingOptionNew is also specified but will never contain an NSKeyValueChangeOldKey entry. (In an initial notification the current value of the observed property may be old, but it's new to the observer.) You can use this option instead of explicitly invoking, at the same time, code that is also invoked by the observer's -observeValueForKeyPath:ofObject:change:context: method. When this option is used with -addObserver:toObjectsAtIndexes:forKeyPath:options:context: a notification will be sent for each indexed object to which the observer is being added.
     */
-    NSKeyValueObservingOptionInitial = 0x04,
+    NSKeyValueObservingOptionInitial; // = 0x04,
 
     /* Whether separate notifications should be sent to the observer before and after each change, instead of a single notification after the change. The change dictionary in a notification sent before a change always contains an NSKeyValueChangeNotificationIsPriorKey entry whose value is [NSNumber numberWithBool:YES], but never contains an NSKeyValueChangeNewKey entry. You can use this option when the observer's own KVO-compliance requires it to invoke one of the -willChange... methods for one of its own properties, and the value of that property depends on the value of the observed object's property. (In that situation it's too late to easily invoke -willChange... properly in response to receiving an -observeValueForKeyPath:ofObject:change:context: message after the change.)
 
 When this option is specified, the change dictionary in a notification sent after a change contains the same entries that it would contain if this option were not specified, except for ordered unique to-many relationships represented by NSOrderedSets.  For those, for NSKeyValueChangeInsertion and NSKeyValueChangeReplacement changes, the change dictionary for a will-change notification contains an NSKeyValueChangeIndexesKey (and NSKeyValueChangeOldKey in the case of Replacement where the NSKeyValueObservingOptionOld option was specified at registration time) which give the indexes (and objects) which *may* be changed by the operation.  The second notification, after the change, contains entries reporting what did actually change.  For NSKeyValueChangeRemoval changes, removals by index are precise.
     */
-    NSKeyValueObservingOptionPrior = 0x08
+    NSKeyValueObservingOptionPrior; // = 0x08
 
-#endif
+//#endif
 
-};
-typedef NSUInteger NSKeyValueObservingOptions;
+}
+//typedef NSUInteger NSKeyValueObservingOptions;
 
 /* Possible values in the NSKeyValueChangeKindKey entry in change dictionaries. See the comments for -observeValueForKeyPath:ofObject:change:context: for more information.
 */
-enum {
-    NSKeyValueChangeSetting = 1,
-    NSKeyValueChangeInsertion = 2,
-    NSKeyValueChangeRemoval = 3,
-    NSKeyValueChangeReplacement = 4
-};
-typedef NSUInteger NSKeyValueChange;
+@:framework("Foundation")
+@:fakeEnum(Int)
+extern enum NSKeyValueChange {
+    NSKeyValueChangeSetting; // = 1,
+    NSKeyValueChangeInsertion; // = 2,
+    NSKeyValueChangeRemoval; // = 3,
+    NSKeyValueChangeReplacement; // = 4
+}
+//typedef NSUInteger NSKeyValueChange;
 
 /* Possible kinds of set mutation for use with -willChangeValueForKey:withSetMutation:usingObjects: and -didChangeValueForKey:withSetMutation:usingObjects:. Their semantics correspond exactly to NSMutableSet's -unionSet:, -minusSet:, -intersectSet:, and -setSet: method, respectively.
 */
-enum {
-    NSKeyValueUnionSetMutation = 1,
-    NSKeyValueMinusSetMutation = 2,
-    NSKeyValueIntersectSetMutation = 3,
-    NSKeyValueSetSetMutation = 4
-};
-typedef NSUInteger NSKeyValueSetMutationKind;
+@:framework("Foundation")
+@:fakeEnum(Int)
+extern enum NSKeyValueSetMutationKind {
+    NSKeyValueUnionSetMutation; // = 1,
+    NSKeyValueMinusSetMutation; // = 2,
+    NSKeyValueIntersectSetMutation; // = 3,
+    NSKeyValueSetSetMutation; // = 4
+}
+//typedef NSUInteger NSKeyValueSetMutationKind;
 
+#if display
 /* Keys for entries in change dictionaries. See the comments for -observeValueForKeyPath:ofObject:change:context: for more information.
 */
 FOUNDATION_EXPORT NSString *const NSKeyValueChangeKindKey;
@@ -64,8 +73,12 @@ FOUNDATION_EXPORT NSString *const NSKeyValueChangeNewKey;
 FOUNDATION_EXPORT NSString *const NSKeyValueChangeOldKey;
 FOUNDATION_EXPORT NSString *const NSKeyValueChangeIndexesKey;
 FOUNDATION_EXPORT NSString *const NSKeyValueChangeNotificationIsPriorKey NS_AVAILABLE(10_5, 2_0);
+#end
 
-extern class NSObject(NSKeyValueObserving)
+@:framework("Foundation")
+@:category("NSObject")
+extern class NSKeyValueObserving {
+
 
 /* Given that the receiver has been registered as an observer of the value at a key path relative to an object, be notified of a change to that value.
 
@@ -82,20 +95,26 @@ If NSKeyValueObservingOptionPrior (introduced in Mac OS 10.5) was specified at o
 
 context is always the same pointer that was passed in at observer registration time.
 */
-public function observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context;
+public function observeValueForKeyPath(keyPath:String, ofObject:Dynamic, change:NSDictionary, context:Dynamic):Void;
 
 }
 
-extern class NSObject(NSKeyValueObserverRegistration)
+@:framework("Foundation")
+@:category("NSObject")
+extern class NSKeyValueObserverRegistration {
 
 /* Register or deregister as an observer of the value at a key path relative to the receiver. The options determine what is included in observer notifications and when they're sent, as described above, and the context is passed in observer notifications as described above. You should use -removeObserver:forKeyPath:context: instead of -removeObserver:forKeyPath: whenever possible because it allows you to more precisely specify your intent. When the same observer is registered for the same key path multiple times, but with different context pointers each time, -removeObserver:forKeyPath: has to guess at the context pointer when deciding what exactly to remove, and it can guess wrong.
 */
-public function addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context;
-public function removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath context:(void *)context NS_AVAILABLE(10_7, 5_0);
-public function removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath;
+public function addObserver(observer:Dynamic, forKeyPath:String, options:Int, context:Dynamic):Void;
+public function removeObserver(observer:NSObject, forKeyPath:String):Void;
+@:selector("removeObserver:forKeyPath:Context:")
+@:require(osx_10_8) @:require(ios5) public function removeObserverForKeyPathContext(observer:NSObject, forKeyPath:String, context:Dynamic):Void;
+//public function addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context;
+//public function removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath context:(void *)context NS_AVAILABLE(10_7, 5_0);
+//public function removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath;
 
 }
-
+#if display
 extern class Array<>(NSKeyValueObserverRegistration)
 
 /* Register or deregister as an observer of the values at a key path relative to each indexed element of the array. The options determine what is included in observer notifications and when they're sent, as described above, and the context is passed in observer notifications as described above. These are not merely convenience methods; invoking them is potentially much faster than repeatedly invoking NSObject(NSKeyValueObserverRegistration) methods. You should use -removeObserver:fromObjectsAtIndexes:forKeyPath:context: instead of -removeObserver:fromObjectsAtIndexes:forKeyPath: whenever possible for the same reason described in the NSObject(NSKeyValueObserverRegistration) comment.
@@ -192,7 +211,7 @@ public function setObservationInfo:(void *)observationInfo;
 
 }
 
-#if (TARGET_OS_MAC && !(TARGET_OS_EMBEDDED || TARGET_OS_IPHONE))
+//#if (TARGET_OS_MAC && !(TARGET_OS_EMBEDDED || TARGET_OS_IPHONE))
 
 extern class NSObject(NSDeprecatedKeyValueObservingCustomization)
 
@@ -202,5 +221,7 @@ extern class NSObject(NSDeprecatedKeyValueObservingCustomization)
 
 } 
 
-#endif
+//#endif
+
+#end
 
