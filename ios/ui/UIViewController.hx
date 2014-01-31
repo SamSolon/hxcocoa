@@ -8,6 +8,7 @@ import ios.ui.UIStoryboardSegue;
 import ios.ui.UIApplication;
 import ios.ui.UIBarButtonItem;
 import ios.ui.UIView;
+import ios.ui.UIGeometry;
 
 @:framework("UIKit")
 @:fakeEnum(Int)
@@ -106,7 +107,9 @@ extern class UIViewController extends UIResponder {
 	public function disablesAutomaticKeyboardDismissal () :Bool;
 
 	public var wantsFullScreenLayout :Bool;
-
+	@:require(ios7)public var edgesForExtendedLayout:UIRectEdge; // Defaults to UIRectEdgeAll
+	@:require(ios7)public var automaticallyAdjustsScrollViewInsets:Bool; // Defaults to NO, but barss are translucent by default on 7_0
+	
 // (UIViewControllerRotation)
 
 // call this method when your return value from shouldAutorotateToInterfaceOrientation: changes

@@ -19,6 +19,17 @@ extern class UIOffset {
 }
 
 @:framework("UIKit")
+@:fakeEnum(Int)
+extern enum UIRectEdge {
+	UIRectEdgeNone;
+	UIRectEdgeTop;
+	UIRectEdgeLeft;
+	UIRectEdgeBottom;
+	UIRectEdgeRight;
+	UIRectEdgeAll;
+}
+
+@:framework("UIKit")
 extern class UIGeometry {
 	
 @:c public static function UIEdgeInsetsMake(top:Float, left:Float, bottom:Float, right:Float) :UIEdgeInsets;
