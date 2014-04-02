@@ -1,12 +1,13 @@
 package objc.foundation;
 
 
+@:framework("Foundation")
 extern class NSUserDefaults extends NSObject {
 
 	public static function standardUserDefaults() :NSUserDefaults;
 	public static function resetStandardUserDefaults() :Void;
 
-	public function init() :NSUserDefaults;
+//	public function init() :NSUserDefaults;
 	public function initWithUser (username:String) :NSUserDefaults;
 	
 	public function objectForKey (defaultName:String) :Dynamic;
